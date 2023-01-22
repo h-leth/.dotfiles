@@ -48,11 +48,7 @@ HISTFILE=~/.zsh_history
 [[ -f ~/.zsh/aliases.zsh ]] && source ~/.zsh/aliases.zsh
 
 # Keybinds
-bindkey \^F forward-word
-bindkey \^B backward-word
-
-# Uncomment on mac if needed
-#bindkey \^U backward-kill-line
+[[ -f ~/.zsh/keybinds.zsh ]] && source ~/.zsh/keybinds.zsh
 
 # Alacritty completions
 fpath+=${ZDOTDIR:-~}/.zsh_functions
