@@ -28,7 +28,8 @@ zstyle ':omz:update' frequency 13
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(zsh-autosuggestions
-	dirhistoryhistory
+	dirhistory
+	history
 )
 
 source $ZSH/oh-my-zsh.sh
