@@ -52,7 +52,8 @@ font:
     #   - (macOS) mononoki NF
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: mononoki NF
+    #family: mononoki NF
+    family: FiraCode NF
     style: Regular
 
   # Point size
