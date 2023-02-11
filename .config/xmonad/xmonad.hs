@@ -8,11 +8,18 @@
 --
 
 import XMonad
-import Data.Monoid
+import System.IO (hClose, hPutStr, hPutStrLn)
 import System.Exit
+
 import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
+
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP())
+import XMonad.Hooks.StatusBar
+import XMonad.Hooks.StatusBar.PP
+
+import Data.Monoid
 
 import qualified XMonad.StackSet as W
 import qualified Data.Map        as M
@@ -56,6 +63,9 @@ myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
 --
 myNormalBorderColor  = "#dddddd"
 myFocusedBorderColor = "#ff0000"
+
+windowCount :: X (Maybe String)
+windowCount = gets $ Just . show . length . W.integrate' . W.stack . W.workspace . W.current . windowset
 
 ------------------------------------------------------------------------
 -- Key bindings. Add, modify or remove key bindings here.
@@ -236,7 +246,7 @@ myEventHook = mempty
 -- Perform an arbitrary action on each internal state change or X event.
 -- See the 'XMonad.Hooks.DynamicLog' extension for examples.
 --
-myLogHook = return ()
+-- myLogHook = return ()
 
 ------------------------------------------------------------------------
 -- Startup hook
@@ -247,9 +257,9 @@ myLogHook = return ()
 --
 -- By default, do nothing.
 myStartupHook = do
-	spawnOnce "nitrogen --restore &"
-	spawnOnce "compton"
-	spawnOnce "xrandr --output eDP-1 --primary --mode 2160x1440 --pos 500x1440 --rotate normal --output DP-1 --mode 2560x1440 --pos 0x0 --rotate normal"
+    spawnOnce "nitrogen --restore &"
+    spawnOnce "compton"
+    spawnOnce "xrandr --output eDP-1 --primary --mode 2160x1440 --pos 500x1440 --rotate normal --output DP-1 --mode 2560x1440 --pos 0x0 --rotate normal"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -257,16 +267,10 @@ myStartupHook = do
 -- Run xmonad with the settings you specify. No need to modify this.
 --
 main = do
-	xmoproc <- spawnPipe "xmobar ~/.config/xmobar/xmobar.config"
-	xmonad $ defaults
-
--- A structure containing your configuration settings, overriding
--- fields in the default config. Any you don't override, will
--- use the defaults defined in xmonad/XMonad/Config.hs
---
--- No need to modify this.
---
-defaults = def {
+    xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobar.config"
+    xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobar.config"
+    xmonad $ docks $ def
+        {
       -- simple stuff
         terminal           = myTerminal,
         focusFollowsMouse  = myFocusFollowsMouse,
@@ -282,12 +286,24 @@ defaults = def {
         mouseBindings      = myMouseBindings,
 
       -- hooks, layouts
-        layoutHook         = myLayout,
         manageHook         = myManageHook,
-        handleEventHook    = myEventHook,
-        logHook            = myLogHook,
+        layoutHook         = avoidStruts $ myLayout,
+	handleEventHook    = myEventHook,
+        logHook            = dynamicLogWithPP xmobarPP
+	{ ppOutput = \x -> hPutStrLn xmproc0 x
+			>> hPutStrLn xmproc1 x
+	, ppCurrent = xmobarColor "#98be65" "" . wrap "[" "]"	-- Current workspace in xmobar
+	, ppVisible = xmobarColor "#98be65" ""			-- Visible but not current workspace
+	, ppHidden = xmobarColor "#82AAFF" "" . wrap "*" ""	-- Hidden workspaces in xmobar
+	, ppHiddenNoWindows = xmobarColor "#c792ea" ""		-- Hidden workspaces (no windows)
+	, ppTitle = xmobarColor "#b3afc2" "" . shorten 60	-- Title of active window in xmobar
+	, ppSep = "<fc=#666666> <fn=1>|</fn> </fc>"		-- Separators in xmobar
+	, ppUrgent = xmobarColor "#C45500" "" . wrap "!" "!"	-- Urgent workspace
+	, ppExtras = [windowCount]				-- # of windows current workspace
+	, ppOrder = \(ws:l:t:ex) -> [ws,l]++ex++[t]
+	},
         startupHook        = myStartupHook
-    }
+}
 
 -- | Finally, a copy of the default bindings in simple textual tabular format.
 help :: String
