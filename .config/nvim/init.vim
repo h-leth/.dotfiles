@@ -47,7 +47,7 @@ nnoremap <C-LeftMouse> :ALEGoToDefinition<CR>
 
 "allow clipboard copy paste in neovim
 if exists("g:neovide")
-  let g:neovide_input_use_logo=v:true
+  let g:neovide_input_use_logo=v:false
   map <D-v> "+p<CR>
   map! <D-v> <C-R>+
   tmap <D-v> <C-R>+
@@ -106,9 +106,6 @@ set bg=dark
 
 "vertical ruler
 let &colorcolumn="80,".join(range(120,999),",")
-
-"font
-set guifont=FiraCode\ NF:h11
 
 let g:neovide_cursor_animation_length = 0
 
