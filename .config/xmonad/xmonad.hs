@@ -19,6 +19,7 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
+import XMonad.Layout.MultiColumns
 import Data.Monoid
 
 import qualified XMonad.StackSet as W
@@ -194,20 +195,11 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full)
+myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| multi)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall nmaster delta ratio
-
-     -- The default number of windows in the master pane
-     nmaster = 1
-
-     -- Default proportion of screen occupied by master pane
-     ratio   = 1/2
-
-     -- Percent of screen to increment by when resizing panes
-     delta   = 3/100
-
+     tiled   = Tall 1 0.02 0.5
+     multi   = multiCol [1] 2 0.02 (-0.5)
 ------------------------------------------------------------------------
 -- Window rules:
 
