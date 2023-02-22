@@ -93,7 +93,9 @@ map <leader>h :noh<cr>
 "quick-save
 map <leader>w :w<cr>
 "quite
-map <leader>q :q<cr>
+map <leader>qq :bd<cr>
+map <leader>qa :q<cr>
+map <leader>wq :wq<cr>
 "buffers
 map <leader>, :buffers<CR>
 map <leader><leader> <c-^>
