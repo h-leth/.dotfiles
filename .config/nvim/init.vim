@@ -13,6 +13,8 @@ Plugin 'gmarik/Vundle.vim'
 " add all your plugins here (note older versions of Vundle
 " used Bundle instead of Plugin)
 Plugin 'preservim/nerdtree'
+Plugin 'nvim-lua/plenary.nvim'
+Plugin 'nvim-telescope/telescope.nvim', { 'branch': '0.1.x' }
 Plugin 'preservim/tagbar'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'nathanaelkane/vim-indent-guides'
@@ -101,6 +103,12 @@ map <leader>, :buffers<CR>
 map <leader><leader> <c-^>
 map <leader><left> :bp<CR>
 map <leader><right> :bn<CR>
+
+"Find files using Telescope command-line sugar.
+nnoremap <leader>ff :Telescope find_files<cr>
+nnoremap <leader>fg :Telescope live_grep<cr>
+nnoremap <leader>fb :Telescope buffers<cr>
+nnoremap <leader>fh :Telescope help_tags<cr>
 
 "color
 colorscheme gruvbox 
