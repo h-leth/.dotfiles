@@ -129,6 +129,4 @@ let g:ale_echo_msg_error_str = 'E'
 let g:ale_echo_msg_warning_str = 'W'
 let g:ale_set_balloons = 1
 
-let g:Tlist_Ctags_Cmd='/usr/local/Cellar/ctags/5.8_2/bin/ctag'
-
 let g:indent_guides_enable_on_vim_startup = 1
