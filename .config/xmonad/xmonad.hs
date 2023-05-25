@@ -58,7 +58,7 @@ myModMask       = mod4Mask
 --
 -- > workspaces = ["web", "irc", "code" ] ++ map show [4..9]
 --
-myWorkspaces    = ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces    = ["1","2","3","4"]
 
 -- Border colors for unfocused and focused windows, respectively.
 --
@@ -251,7 +251,6 @@ myEventHook = mempty
 myStartupHook = do
     spawnOnce "nitrogen --restore &"
     spawnOnce "compton"
-    spawnOnce "xrandr --output eDP-1 --primary --mode 2160x1440 --pos 500x1440 --rotate normal --output DP-1 --mode 2560x1440 --pos 0x0 --rotate normal"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
