@@ -34,6 +34,10 @@ plugins=(zsh-autosuggestions
 
 source $ZSH/oh-my-zsh.sh
 
+# fzf
+source /usr/share/fzf/key-bindings.zsh
+source /usr/share/fzf/completion.zsh
+
 # User configuration
 
 # History
