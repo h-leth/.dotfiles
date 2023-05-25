@@ -2,6 +2,8 @@ autocmd FileType python map <buffer> <F3> :w<CR>:exec '!python3' shellescape(@%,
 autocmd FileType python imap <buffer> <F3> <esc>:w<CR>:exec '!python3' shellescape(@%, 1)<CR>
 autocmd FileType python noremap <buffer> <F8> :call Autopep8()<CR>
 
+set tabstop = 2
+
 let g:ale_linters = {'python': ['pylint']}
 let g:ale_fixers = {'python': ['remove_trailing_lines', 'trim_whitespace', 'autopep8']}
 

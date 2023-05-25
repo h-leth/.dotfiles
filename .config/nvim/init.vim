@@ -59,6 +59,11 @@ endif
 "get syntax
 syntax on
 
+"set default indent
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
+
 "backspace
 set backspace=indent,eol,start
 
