@@ -6,9 +6,6 @@ alias op-logout='op signout && unset OP_SESSION_Y7LY6DBGBVC4BGNZ5L3PCMXADA'
 alias gl='git log --oneline --graph'
 alias gs='git status'
 
-# neovide
-alias nv='neovide'
-
 # Colored ls and grep commands
 if [[ "$OSTYPE" == "linux-gnu"* ]] then
 	if [ -x /usr/bin/dircolors  ]; then
