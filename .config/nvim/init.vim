@@ -26,7 +26,6 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'morhetz/gruvbox'
 " Python
 Plugin 'tell-k/vim-autopep8'
-Plugin 'davidhalter/jedi-vim'
 " Rust
 Plugin 'rust-lang/rust.vim'
 Plugin 'racer-rust/vim-racer'
