@@ -53,11 +53,11 @@ font:
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
     #family: mononoki NF
-    family: FiraCode NF
+    family: FiraCode Nerd Font
     style: Regular
 
   # Point size
-  size: 8.0
+  size: 11.0
 
 # Colors (Gruvbox dark)
 colors:
