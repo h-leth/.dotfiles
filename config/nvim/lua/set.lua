@@ -2,7 +2,6 @@ vim.cmd.filetype({ 'plugin',  'indent', 'on' })
 vim.cmd.syntax = true
 
 vim.opt.background = 'dark'
-vim.cmd.colorscheme({ 'gruvbox' })
 
 -- linenumbers
 vim.opt.nu = true

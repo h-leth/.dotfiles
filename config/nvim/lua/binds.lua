@@ -48,9 +48,6 @@ vim.keymap.set('n', '<leader><leader>', '<C-^>')
 vim.keymap.set('n', '<leader><left>', ':bp<CR>')
 vim.keymap.set('n', '<leader><right>', ':bn<CR>')
 
--- nerdtree
-vim.keymap.set('n', '<leader>e', ':NERDTreeToggle<CR>', { silent = true })
-
 -- close floating buffers
 vim.keymap.set('n', '<Esc>', function()
   for _, win in ipairs(vim.api.nvim_list_wins()) do
