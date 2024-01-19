@@ -259,7 +259,7 @@ myStartupHook = do
 --
 main = do
     xmproc0 <- spawnPipe "xmobar -x 0 ~/.config/xmobar/xmobar.config"
-    xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobar.config"
+    xmproc1 <- spawnPipe "xmobar -x 1 ~/.config/xmobar/xmobar_secondary.config"
     xmonad $ docks $ def
         {
       -- simple stuff
