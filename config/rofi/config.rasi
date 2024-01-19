@@ -1,0 +1,8 @@
+configuration {
+ modi: "drun,ssh,combi";
+ font: "FiraCode Nerd Font 10";
+ combi-modi: "drun,ssh";
+ terminal: "alacritty";
+ }
+
+@theme "/usr/share/rofi/themes/gruvbox-dark.rasi"
