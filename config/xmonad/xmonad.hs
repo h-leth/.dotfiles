@@ -19,6 +19,7 @@ import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, s
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
+import XMonad.Layout.Spacing
 import XMonad.Layout.MultiColumns
 import Data.Monoid
 
@@ -216,10 +217,13 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| multi)
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"        --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , resource  =? "desktop_window" --> doIgnore
-    , resource  =? "kdesktop"       --> doIgnore ]
+    [ className =? "MPlayer"          --> doFloat
+    , className =? "Authenticator"    --> doFloat
+    , className =? "steam"            --> doFloat
+    , className =? "1Password"        --> doFloat
+    , className =? "Gimp"             --> doFloat
+    , resource  =? "desktop_window"   --> doIgnore
+    , resource  =? "kdesktop"         --> doIgnore ]
 
 ------------------------------------------------------------------------
 -- Event handling
@@ -249,8 +253,11 @@ myEventHook = mempty
 --
 -- By default, do nothing.
 myStartupHook = do
+    spawnOnce "/usr/lib/pam_kwallet_init &"
+    spawnOnce "/usr/lib/polkit-kde-authentication-agent-1 &"
     spawnOnce "nitrogen --restore &"
-    spawnOnce "compton"
+    spawnOnce "picom -b"
+    spawnOnce "feh --bg-center /usr/share/wallpapers/Next/contents/images_dark/2560x1440.png --bg-center /usr/share/wallpapers/Next/contents/images_dark/5120x2880.png"
 
 ------------------------------------------------------------------------
 -- Now run xmonad with all the defaults we set up.
@@ -278,8 +285,8 @@ main = do
 
       -- hooks, layouts
         manageHook         = myManageHook,
-        layoutHook         = avoidStruts $ myLayout,
-	handleEventHook    = myEventHook,
+        layoutHook         = spacingWithEdge 5 $ avoidStruts $ myLayout,
+      	handleEventHook    = myEventHook,
         logHook            = dynamicLogWithPP xmobarPP
 	{ ppOutput = \x -> hPutStrLn xmproc0 x
 			>> hPutStrLn xmproc1 x
