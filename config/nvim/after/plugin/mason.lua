@@ -10,13 +10,29 @@ require("mason").setup({
 })
 
 local lsp_zero = require('lsp-zero')
+
 require("mason-lspconfig").setup({
   ensure_installed = {
     'jedi_language_server',
     'rust_analyzer',
   },
   handlers = {
-    lsp_zero.default_setup,
+    function(server_name)
+      require('lspconfig')[server_name].setup({})
+    end,
+
+    rust_analyzer = function()
+      require('lspconfig').rust_analyzer.setup({
+        settings = {
+          ['rust_analyzer'] = {
+            procMacro = {
+              enable = 'true'
+            }
+          }
+        },
+      on_attach = format,
+      })
+    end,
   },
 })
 
