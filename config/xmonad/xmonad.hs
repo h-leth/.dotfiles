@@ -222,6 +222,7 @@ myManageHook = composeAll
     , className =? "steam"            --> doFloat
     , className =? "1Password"        --> doFloat
     , className =? "Gimp"             --> doFloat
+    , className =? "Sxiv"             --> doFloat
     , resource  =? "desktop_window"   --> doIgnore
     , resource  =? "kdesktop"         --> doIgnore ]
 
