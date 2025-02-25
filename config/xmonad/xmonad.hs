@@ -15,10 +15,12 @@ import XMonad.Util.SpawnOnce
 import XMonad.Util.Run
 
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog (dynamicLogWithPP, wrap, xmobarPP, xmobarColor, shorten, PP())
 import XMonad.Hooks.StatusBar
 import XMonad.Hooks.StatusBar.PP
 
+import XMonad.Layout.ResizableTile
 import XMonad.Layout.Spacing
 import XMonad.Layout.MultiColumns
 import Data.Monoid
@@ -122,6 +124,12 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Expand the master area
     , ((modm,               xK_l     ), sendMessage Expand)
 
+    -- Shrink the Resizeable area
+    , ((modm,               xK_z     ), sendMessage MirrorShrink)
+
+    -- Expand the Resizeable area
+    , ((modm,               xK_a     ), sendMessage MirrorExpand)
+
     -- Push window back into tiling
     , ((modm,               xK_t     ), withFocused $ windows . W.sink)
 
@@ -196,11 +204,11 @@ myMouseBindings (XConfig {XMonad.modMask = modm}) = M.fromList $
 -- The available layouts.  Note that each layout is separated by |||,
 -- which denotes layout choice.
 --
-myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| multi)
+myLayout = avoidStruts (tall ||| Mirror tall ||| Full ||| multi)
   where
      -- default tiling algorithm partitions the screen into two panes
-     tiled   = Tall 1 0.02 0.5
-     multi   = multiCol [1] 2 0.02 (-0.5)
+     tall = avoidStruts $ ResizableTall 1 0.02 0.5 []
+     multi   = multiCol [1] 2 0.02 0.5
 ------------------------------------------------------------------------
 -- Window rules:
 
@@ -217,7 +225,10 @@ myLayout = avoidStruts (tiled ||| Mirror tiled ||| Full ||| multi)
 -- 'className' and 'resource' are used below.
 --
 myManageHook = composeAll
-    [ className =? "MPlayer"          --> doFloat
+
+    [ manageDocks
+    , isFullscreen                    --> doFullFloat
+    , className =? "MPlayer"          --> doFloat
     , className =? "Authenticator"    --> doFloat
     , className =? "steam"            --> doFloat
     , className =? "1Password"        --> doFloat
