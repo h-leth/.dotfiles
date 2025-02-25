@@ -26,8 +26,11 @@ require("mason-lspconfig").setup({
         settings = {
           ['rust_analyzer'] = {
             procMacro = {
-              enable = 'true'
-            }
+              enable = 'true',
+            },
+            checkOnSave = {
+              command = 'clippy',
+            },
           }
         },
       on_attach = format,
