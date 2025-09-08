@@ -13,9 +13,9 @@ cmp.setup({
     end,
   },
   mapping = cmp.mapping.preset.insert({
-    ['<S-k>'] = cmp.mapping.select_prev_item(),
-    ['<S-j>'] = cmp.mapping.select_next_item(),
-    ['<S-l>'] = cmp.mapping.confirm({
+    ['<C-k>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
+    ['<C-Space>'] = cmp.mapping.confirm({
       behavior = cmp.ConfirmBehavior.Insert,
       select = true }),
     ['<C-S-f>'] = cmp.mapping.scroll_docs(-4),
