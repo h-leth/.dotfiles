@@ -47,6 +47,12 @@ require('pckr').add{
   'racer-rust/vim-racer';
   'simrat39/rust-tools.nvim';
 
+  -- MarkDown
+  { 'MeanderingProgrammer/render-markdown.nvim',
+    after = { 'nvim-treesitter' },
+    requires = { 'nvim-mini/mini.nvim', opt = true }
+  };
+
   { 'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
   requires = {
