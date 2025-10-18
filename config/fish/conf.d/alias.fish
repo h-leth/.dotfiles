@@ -2,3 +2,4 @@
 #
 alias gl='git log --oneline --graph'
 alias gs='git status'
+alias gw='git worktree'
