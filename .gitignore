@@ -1,1 +1,8 @@
+config/weechat/autosort.conf
+config/weechat/irc.conf
+config/weechat/plugins.conf
+config/weechat/relay.conf
+config/weechat/ruby.conf
+config/weechat/weechat.conf
+
 .zsh_functions/_alacritty
