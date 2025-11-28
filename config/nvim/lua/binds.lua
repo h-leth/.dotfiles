@@ -2,6 +2,7 @@
 vim.g.mapleader = " "
 
 -- disable F1
+vim.keymap.set({'n', 'v', 't'}, '<leader>n', '<nope>')
 vim.keymap.set({'n', 'v', 't'}, '<f1>', '<nope>')
 -- move highlighed text
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
@@ -45,8 +46,8 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>')
 
 -- buffers
 vim.keymap.set('n', '<leader><leader>', '<C-^>')
-vim.keymap.set('n', '<leader><left>', ':bp<CR>')
-vim.keymap.set('n', '<leader><right>', ':bn<CR>')
+vim.keymap.set('n', '<leader>p', ':bp<CR>')
+vim.keymap.set('n', '<leader>n', ':bn<CR>')
 
 -- close floating buffers
 vim.keymap.set('n', '<Esc>', function()
