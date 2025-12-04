@@ -12,6 +12,9 @@ require("mason").setup({
 require("mason-lspconfig").setup({
   ensure_installed = {
     'jedi_language_server',
+    'tombi',
+    'yamlls',
+    'docker_language_server',
   },
   automatic_enable = {
     exclude = {
