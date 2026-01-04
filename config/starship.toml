@@ -97,9 +97,8 @@ format = "via [ $version](bold purple) "
 disabled = true
 
 [python]
-format = "via [ $({virtualenv})]($style) "
-python_binary = "python3"
-disabled = true
+format = 'via [ $version]($style)[( \($virtualenv\))](bold white) '
+python_binary = ["python3", "python"]
 
 [nodejs]
 format = "via [󰎙 $version](bold green) "
