@@ -4,6 +4,12 @@ vim.g.mapleader = " "
 -- disable F1
 vim.keymap.set({'n', 'v', 't'}, '<leader>n', '<nope>')
 vim.keymap.set({'n', 'v', 't'}, '<f1>', '<nope>')
+
+-- restart
+vim.keymap.set({'n'}, '<leader>re', '<cmd>restart<CR>', {
+  desc = 'Restart Neovim (:restart)'
+})
+
 -- move highlighed text
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv")
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
