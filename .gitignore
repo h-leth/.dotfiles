@@ -1,3 +1,6 @@
+# Neovim pack lock file
+nvim-pack-lock.json
+
 config/weechat/autosort.conf
 config/weechat/irc.conf
 config/weechat/plugins.conf

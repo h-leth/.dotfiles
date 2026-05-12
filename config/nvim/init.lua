@@ -1,3 +1,3 @@
 require('set')
 require('binds')
-require('plugins.pckr')
+require('plugins.pack')
